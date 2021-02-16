@@ -1,6 +1,6 @@
 # Scraping Amazon
 
-This project scrapes Amazon to attain information about processors and other technical stuff. It is based on [I'm an inline-style link with title](https://github.com/shekharbiswas/scrape_processor "Shekar Biswas' code")
+This project scrapes Amazon to attain information about processors and other technical stuff. It is based on [Shekar Biswas' code](https://github.com/shekharbiswas/scrape_processor "Shekar Biswas' code").
 
 His YouTube project link is here:
 
