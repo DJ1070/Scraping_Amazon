@@ -49,10 +49,10 @@ with open("product_urls.txt",'r') as urllist, open('product_output.jsonl','w') a
                 data['seller_link'] = 'https://www.amazon.com' + data['seller_link']
                 data['freq_bought_link'] = 'https://www.amazon.com' + data['freq_bought_link']
                 json.dump(data,outfile)
-                outfile.write("\n")
+                outfile.write(",\n")
 
             except:
                 json.dump(data,outfile)
-                outfile.write("\n")
+                outfile.write(",\n")
 
             # sleep(1)
