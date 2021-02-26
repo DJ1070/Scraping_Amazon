@@ -130,11 +130,15 @@ for i in range(len(df)):
     if df.name[i] is None:
         df = df.drop([i], axis = 0)
 
+df = df.drop_duplicates('name', keep = 'first')
+
 df_processor_customer_reviews_link = df.link_to_all_reviews
 df_processor_customer_reviews_link = df_processor_customer_reviews_link.dropna()
+#df_processor_customer_reviews_link = df_processor_customer_reviews_link.drop_duplicates('link_to_all_reviews', keep='first')
 df_processor_customer_reviews_link.reset_index(drop=True, inplace = True)
 
 df_processor_bought_together = df[['ASIN', 'name', 'freq_bought', 'freq_bought_link']]
+df_processor_bought_together = df_processor_bought_together.drop_duplicates('name', keep='last')
 
 df.to_csv(csv_filename)
 df_processor_customer_reviews_link.to_csv(csv_customer_reviews) # actually not necessary anymore since there's being a txt-file created

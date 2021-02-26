@@ -138,6 +138,8 @@ for i in range(len(df)):
     if df.name[i] is None:
         df = df.drop([i], axis = 0)
 
+df = df.drop_duplicates('name', keep = 'first')
+
 # Creating dataframe with links to all customer reviews for saving in additional CSV-file
 
 df_phone_customer_reviews_link = df.link_to_all_reviews
