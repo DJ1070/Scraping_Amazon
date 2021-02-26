@@ -130,15 +130,24 @@ for i in range(len(df)):
             df['customer reviews'][i] = c
         except:
             pass
+
 df.rename(columns = {'customer reviews' : 'rating'}, inplace = True)
 
 df = df.drop(['product_summary', 'product_tech_spec', 'product_addl_info'], axis = 1)
+
+for i in range(len(df)):
+    if df.rating[i] == '':        
+        df.rating[i] = 0
+
+df['rating'] = df.rating.astype(float)
 
 for i in range(len(df)):
     if df.name[i] is None:
         df = df.drop([i], axis = 0)
 
 df = df.drop_duplicates('name', keep = 'first')
+
+df.reset_index(drop=True, inplace=True)
 
 # Creating dataframe with links to all customer reviews for saving in additional CSV-file
 

@@ -3,7 +3,7 @@ import numpy as np
 import re
 from pandas.io.json import json_normalize
 
-csv_filename = 'product_details_processor.csv'
+csv_filename = 'product_details_processor2.csv'
 csv_bought_together = 'items_bought_together.csv'
 csv_customer_reviews = 'links_to_customer_reviews_processor.csv'
 txt_customer_reviews = 'links_to_customer_reviews_processor.txt'
@@ -127,14 +127,21 @@ df.rename(columns = {'customer reviews' : 'rating'}, inplace = True)
 df = df.drop(['product_summary', 'product_tech_spec', 'product_addl_info'], axis = 1)
 
 for i in range(len(df)):
+    if df.rating[i] == '':        
+        df.rating[i] = 0
+
+df['rating'] = df.rating.astype(float)
+
+for i in range(len(df)):
     if df.name[i] is None:
         df = df.drop([i], axis = 0)
 
 df = df.drop_duplicates('name', keep = 'first')
 
+df.reset_index(drop=True, inplace=True)
+
 df_processor_customer_reviews_link = df.link_to_all_reviews
 df_processor_customer_reviews_link = df_processor_customer_reviews_link.dropna()
-#df_processor_customer_reviews_link = df_processor_customer_reviews_link.drop_duplicates('link_to_all_reviews', keep='first')
 df_processor_customer_reviews_link.reset_index(drop=True, inplace = True)
 
 df_processor_bought_together = df[['ASIN', 'name', 'freq_bought', 'freq_bought_link']]
