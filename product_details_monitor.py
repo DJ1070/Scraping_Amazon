@@ -10,6 +10,8 @@ txt_customer_reviews = 'links_to_customer_reviews_monitor.txt'
 
 df = pd.read_json('monitor_product_output.jsonl')
 
+df.name = df.name.str.replace('"','')
+
 df = df.dropna(axis=0, how='all')
 
 df.link_to_all_reviews = 'https://www.amazon.com/' + df.link_to_all_reviews
